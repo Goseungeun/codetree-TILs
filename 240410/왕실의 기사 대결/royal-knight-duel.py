@@ -2,6 +2,7 @@ l,n,q = map(int,input().split())
 board = [list(map(int,input().split())) for _ in range(l)] 
 knight = []
 knight_damage = [0] * n
+move_state = [0] * n
 
 for _ in range(n):
     r,c,h,w,k = map(int,input().split())
@@ -21,6 +22,7 @@ def make_knight_board(knight):
 
 def move(knight_num,d):
     # print(knight_num)
+    move_state = [0] * n
     n_cr,n_cc,h,w = knight[knight_num][0],knight[knight_num][1],knight[knight_num][2],knight[knight_num][3]
     n_nr = n_cr + dir[d][0]
     n_nc = n_cc + dir[d][1]
@@ -37,6 +39,7 @@ def move(knight_num,d):
                 return False
     knight[knight_num][0] = n_nr
     knight[knight_num][1] = n_nc
+    move_state[knight_num] = 1
     return True
 
 def damage(knight,move_knight_num):
@@ -44,15 +47,15 @@ def damage(knight,move_knight_num):
         if knight_num == move_knight_num:
             continue
         r,c,h,w,k = knight[knight_num]
-        if k > 0 :
+        if k > 0 and move_state[knight_num] == 1:
             ddd = 0
             for i in range(r,r+h):
                 for j in range(c,c+w):
                     if board[i][j] == 1:
                         k -= 1
                         ddd += 1
-        knight[knight_num][4] = k
-        knight_damage[knight_num] = ddd
+            knight[knight_num][4] = k
+            knight_damage[knight_num] += ddd
 
 knight_board = make_knight_board(knight)
 # print("initial :", knight_board)
@@ -60,6 +63,7 @@ knight_board = make_knight_board(knight)
 for _ in range(q):
     k_n,d = map(int,input().split())
     if move(k_n-1,d):
+        # print("move")
         damage(knight,k_n-1)
         # print('knight_status : ',knight)
         knight_board = make_knight_board(knight)
@@ -67,7 +71,8 @@ result = 0
 for knight_num in range(n):
     if knight[knight_num][4] > 0:
         result += knight_damage[knight_num]
-
+# print(knight)
+# print(knight_damage)
 print(result)
 
 # print(knight)
