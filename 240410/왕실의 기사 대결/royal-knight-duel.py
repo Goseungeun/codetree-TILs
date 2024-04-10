@@ -28,12 +28,15 @@ def move(knight_num,d):
     
     for i in range(n_nr,n_nr+h):
         for j in range(n_nc,n_nc+w):
+            #print(i,j)
             if 0<=i<l and 0<=j<l:
                 if board[i][j] == 2:
                     return False
                 elif knight_board[i][j] != -1 and knight_board[i][j] != knight_num:
                     if not(move(knight_board[i][j],d)):
                         return False
+                    else:
+                        break
             else:
                 return False
     knight[knight_num][0] = n_nr
@@ -64,16 +67,17 @@ for _ in range(q):
     k_n,d = map(int,input().split())
     move_state = [0] * n
     if move(k_n-1,d):
-        # print("move")
+        #print("move")
         damage(knight,k_n-1)
-        # print('knight_status : ',knight)
+        #print('knight_status : ',knight)
+        #print("knight_damage :",knight_damage)
         knight_board = make_knight_board(knight)
 result = 0
 for knight_num in range(n):
     if knight[knight_num][4] > 0:
         result += knight_damage[knight_num]
 # print(knight)
-# print(knight_damage)
+#print(knight_damage)
 print(result)
 
 # print(knight)
