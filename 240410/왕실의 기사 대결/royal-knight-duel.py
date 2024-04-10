@@ -27,7 +27,7 @@ def move(knight_num,d):
     
     for i in range(n_nr,n_nr+h):
         for j in range(n_nc,n_nc+w):
-            if 0<=i<l and 0<=i<l:
+            if 0<=i<l and 0<=j<l:
                 if board[i][j] == 2:
                     return False
                 elif knight_board[i][j] != -1 and knight_board[i][j] != knight_num:
