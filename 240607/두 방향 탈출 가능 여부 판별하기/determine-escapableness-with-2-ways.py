@@ -3,7 +3,7 @@ board = [list(map(int,input().split())) for _ in range(n)]
 flag = False
 
 def can_go(x,y):
-    if not(0 <= x < n and 0 <= y < n):
+    if not(0 <= x < n and 0 <= y < m):
         return False
     if board[x][y] != 1:
         return False
@@ -11,7 +11,7 @@ def can_go(x,y):
 
 def dfs(cur_x,cur_y):
     global flag
-    if cur_x == n-1 and cur_y == n-1:
+    if cur_x == n-1 and cur_y == m-1:
         flag = True
         return
 
