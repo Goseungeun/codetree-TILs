@@ -30,10 +30,12 @@ while True:
         if j == r_s-1 or answer[i-1][j] != 32:
             d = 3
     elif d == 3:
-        i += d_ij[d][0]
-        j += d_ij[d][1]
-        if i == 0 or answer[i-1][j-1] != 32:
+        if answer[i-1][j-1] != 32:
+            alpah -= 1
             d = 4
+        else:
+            i += d_ij[d][0]
+            j += d_ij[d][1]            
     elif d == 4:
         i += d_ij[d][0]
         j += d_ij[d][1]
