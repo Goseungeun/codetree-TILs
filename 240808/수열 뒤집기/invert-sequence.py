@@ -4,8 +4,15 @@ B1,B2 = map(int,input().split())
 
 num_list = [i + 1 for i in range(N)]
 
+def reversed_list(num_list,start,end):
+    while start < end:
+        num_list[start],num_list[end] = num_list[end],num_list[start]
+
+        start += 1
+        end -= 1
+
 for _ in range(K):
-    num_list = num_list[:A1-1] + list(reversed(num_list[A1-1:A2])) + num_list[A2:]
-    num_list = num_list[:B1-1] + list(reversed(num_list[B1-1:B2]))+ num_list[B2:]
+    reversed_list(num_list,A1-1,A2-1)
+    reversed_list(num_list,B1-1,B2-1)
 
 print('\n'.join(list(map(str,num_list))))
