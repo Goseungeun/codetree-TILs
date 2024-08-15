@@ -6,7 +6,7 @@ next_pro = [0] * n
 in_degree = [0] * n
 ball = 0
 
-next_pro[0] = in_degree[0] = 1
+next_pro[0] = in_degree[1] = 1
 next_pro[n-1] , in_degree[n-2] = n-2, 1
 
 for i in range(1,n-1):
