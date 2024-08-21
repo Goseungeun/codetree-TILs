@@ -1,6 +1,6 @@
 from collections import deque
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**4)
 
 n,m = map(int,input().split())
 answer = 0
