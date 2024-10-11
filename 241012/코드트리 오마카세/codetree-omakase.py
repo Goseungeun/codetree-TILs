@@ -40,7 +40,7 @@ for name in names:
         add_time = add_eating_time(s_pos,position[name])
         eating_time += add_time
 
-        exit_t[name] = eating_time
+        exit_t[name] = max(exit_t[name],eating_time)
         queue.append([150,eating_time])
 
 for name in names:
